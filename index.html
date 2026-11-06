@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Компресійний одяг для MMA, фітнесу та силових тренувань. Комплекти 2в1 та 3в1 за цінами розпродажу.">
+  <title>THERMO SHOP — Компресійний одяг</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0b0c;
+      --card: #151517;
+      --white: #f5f5f5;
+      --muted: #999;
+      --red: #e32932;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font: inherit; }
+
+    header {
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #252525;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span { color: var(--red); }
+
+    .header-link {
+      border: 1px solid #555;
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .hero {
+      min-height: 510px;
+      padding: 85px 8%;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, #080809 5%, rgba(8,8,9,.88) 45%, rgba(8,8,9,.2)),
+        linear-gradient(0deg, #0b0b0c, transparent 35%),
+        #242426;
+    }
+
+    .hero-content { max-width: 650px; }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: .99;
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      color: #c4c4c4;
+      font-size: 17px;
+      max-width: 470px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 16px 27px;
+      font-weight: bold;
+      border-radius: 3px;
+      transition: .2s;
+    }
+
+    .btn:hover { background: #bd2028; }
+
+    .section {
+      padding: 75px 7%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 35px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product {
+      background: var(--card);
+      border: 1px solid #292929;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .product-photo {
+      height: 280px;
+      background: linear-gradient(135deg, #292929, #101010);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #777;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .product-info { padding: 22px; }
+
+    .product h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .product p {
+      color: var(--muted);
+      font-size: 14px;
+      min-height: 42px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 900;
+      margin: 18px 0;
+    }
+
+    .price small {
+      font-size: 14px;
+      color: #777;
+      text-decoration: line-through;
+      margin-left: 8px;
+    }
+
+    .product .btn {
+      display: block;
+      text-align: center;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit {
+      background: var(--card);
+      border: 1px solid #292929;
+      padding: 25px;
+    }
+
+    .benefit h3 { margin-bottom: 10px; }
+    .benefit p { color: var(--muted); font-size: 14px; }
+
+    .order {
+      background: #151517;
+      padding: 55px 25px;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    .order p {
+      color: var(--muted);
+      margin: 12px auto 25px;
+    }
+
+    footer {
+      padding: 30px 7%;
+      color: #777;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .products { grid-template-columns: 1fr 1fr; }
+      .benefits { grid-template-columns: 1fr; }
+      .hero { min-height: 440px; padding: 65px 7%; }
+    }
+
+    @media (max-width: 520px) {
+      header { padding: 17px 5%; }
+      .logo { font-size: 19px; }
+      .header-link { font-size: 11px; padding: 9px; }
+      .products { grid-template-columns: 1fr; }
+      .product-photo { height: 300px; }
+      .section { padding: 55px 5%; }
+      .hero p { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo">THERMO<span>SHOP</span></a>
+  <a href="#products" class="header-link">КАТАЛОГ ТОВАРІВ</a>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">TRAIN HARD. STAY STRONG.</div>
+    <h1>ТВІЙ ФОРМАТ.<br>ТВОЄ ТРЕНУВАННЯ.</h1>
+    <p>Компресійний одяг для MMA, фітнесу, CrossFit та силових тренувань.</p>
+    <a href="#products" class="btn">ОБРАТИ КОМПЛЕКТ →</a>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <h2 class="section-title">ОБИРАЙ СВІЙ КОМПЛЕКТ</h2>
+  <p class="section-subtitle">Спеціальні ціни на залишок колекції.</p>
+
+  <div class="products">
+
+    <article class="product">
+      <div class="product-photo">ФОТО КОМПЛЕКТУ 3В1</div>
+      <div class="product-info">
+        <h3>КОМПЛЕКТ 3В1</h3>
+        <p>Рашгард + легінси + шорти</p>
+        <div class="price">1190 грн</div>
+        <a href="#order" class="btn">ОБРАТИ</a>
+      </div>
+    </article>
+
+    <article class="product">
+      <div class="product-photo">ФОТО КОМПЛЕКТУ 2В1</div>
+      <div class="product-info">
+        <h3>КОМПЛЕКТ 2В1</h3>
+        <p>Рашгард + легінси</p>
+        <div class="price">1050 грн</div>
+        <a href="#order" class="btn">ОБРАТИ</a>
+      </div>
+    </article>
+
+    <article class="product">
+      <div class="product-photo">ФОТО ШОРТІВ</div>
+      <div class="product-info">
+        <h3>КОМПРЕСІЙНІ ШОРТИ</h3>
+        <p>Для тренувань та активного спорту</p>
+        <div class="price">600 грн</div>
+        <a href="#order" class="btn">ОБРАТИ</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">СТВОРЕНО ДЛЯ РУХУ</h2>
+  <p class="section-subtitle">Твій одяг — твоя свобода під час тренування.</p>
+
+  <div class="benefits">
+    <div class="benefit">
+      <h3>01 / ЕЛАСТИЧНІСТЬ</h3>
+      <p>Матеріал адаптується до рухів тіла та не обмежує активність.</p>
+    </div>
+    <div class="benefit">
+      <h3>02 / КОМФОРТ</h3>
+      <p>Одяг для інтенсивних тренувань і спортивних навантажень.</p>
+    </div>
+    <div class="benefit">
+      <h3>03 / УНІВЕРСАЛЬНІСТЬ</h3>
+      <p>Підходить для MMA, фітнесу, CrossFit та залу.</p>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="order">
+  <h2 class="section-title">ГОТОВИЙ ДО ТРЕНУВАНЬ?</h2>
+  <p>Обери комплект та напиши нам для оформлення замовлення.</p>
+  <a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener">
+    ЗАМОВИТИ В INSTAGRAM →
+  </a>
+</section>
+
+<footer>
+  THERMO SHOP © 2026. Усі права захищені.
+</footer>
+
+</body>
+</html>
