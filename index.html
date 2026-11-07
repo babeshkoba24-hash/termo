@@ -1,312 +1,180 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Компресійний одяг для MMA, фітнесу та силових тренувань. Комплекти 2в1 та 3в1 за цінами розпродажу.">
-  <title>THERMO SHOP — Компресійний одяг</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <!-- Головний тег для мобільної оптимізації -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thermofight | Компресійний одяг для тренувань</title>
+    
+    <style>
+        /* Базові налаштування (Темна спортивна тема) */
+        :root {
+            --primary-color: #d90429; /* Агресивний червоний для кнопок */
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
 
-    :root {
-      --bg: #0b0b0c;
-      --card: #151517;
-      --white: #f5f5f5;
-      --muted: #999;
-      --red: #e32932;
-    }
+        body {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
 
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-    }
+        h1, h2, h3 { margin: 0; text-transform: uppercase; }
+        p { font-family: 'Arial', sans-serif; margin: 0; line-height: 1.5; }
 
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; font: inherit; }
+        /* Контейнер під екран телефону */
+        .mobile-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            background-color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
 
-    header {
-      padding: 20px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #252525;
-    }
+        /* Головний екран (Hero) */
+        .hero {
+            text-align: center;
+            padding: 40px 20px 30px;
+            background: linear-gradient(180deg, #000000 0%, var(--bg-color) 100%);
+            border-bottom: 2px solid var(--primary-color);
+        }
 
-    .logo {
-      font-size: 23px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
+        .hero h1 { font-size: 32px; letter-spacing: 1px; margin-bottom: 10px; }
+        .hero p { color: var(--text-muted); font-size: 16px; margin-bottom: 25px; }
 
-    .logo span { color: var(--red); }
+        /* Кнопки (Широкі, зручні для пальця) */
+        .btn-main {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            padding: 18px 0;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            transition: transform 0.1s;
+        }
+        .btn-main:active { transform: scale(0.97); }
 
-    .header-link {
-      border: 1px solid #555;
-      padding: 10px 18px;
-      border-radius: 4px;
-      font-size: 13px;
-    }
+        /* Блок з товарами */
+        .products-section { padding: 20px; }
+        .section-title { text-align: center; font-size: 24px; margin-bottom: 20px; }
 
-    .hero {
-      min-height: 510px;
-      padding: 85px 8%;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(90deg, #080809 5%, rgba(8,8,9,.88) 45%, rgba(8,8,9,.2)),
-        linear-gradient(0deg, #0b0b0c, transparent 35%),
-        #242426;
-    }
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+        }
 
-    .hero-content { max-width: 650px; }
+        /* Заглушка для фото (потім заміните на <img>) */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .eyebrow {
-      color: var(--red);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-    }
+        .product-title { font-size: 22px; margin-bottom: 5px; }
+        .product-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 15px; }
+        .product-price { color: var(--primary-color); font-size: 26px; margin-bottom: 15px; font-weight: bold;}
 
-    h1 {
-      font-size: clamp(40px, 7vw, 76px);
-      line-height: .99;
-      font-weight: 900;
-      margin-bottom: 24px;
-    }
+        /* Блок довіри (Підбір розміру) */
+        .trust-box {
+            background-color: #1a1a1a;
+            border: 1px dashed var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 20px;
+            text-align: center;
+        }
+        .trust-box h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+        .trust-box p { font-size: 14px; color: var(--text-muted); }
 
-    .hero p {
-      color: #c4c4c4;
-      font-size: 17px;
-      max-width: 470px;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--red);
-      color: white;
-      border: none;
-      padding: 16px 27px;
-      font-weight: bold;
-      border-radius: 3px;
-      transition: .2s;
-    }
-
-    .btn:hover { background: #bd2028; }
-
-    .section {
-      padding: 75px 7%;
-      max-width: 1400px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      margin-bottom: 35px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .product {
-      background: var(--card);
-      border: 1px solid #292929;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .product-photo {
-      height: 280px;
-      background: linear-gradient(135deg, #292929, #101010);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #777;
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-
-    .product-info { padding: 22px; }
-
-    .product h3 {
-      font-size: 21px;
-      margin-bottom: 8px;
-    }
-
-    .product p {
-      color: var(--muted);
-      font-size: 14px;
-      min-height: 42px;
-    }
-
-    .price {
-      font-size: 28px;
-      font-weight: 900;
-      margin: 18px 0;
-    }
-
-    .price small {
-      font-size: 14px;
-      color: #777;
-      text-decoration: line-through;
-      margin-left: 8px;
-    }
-
-    .product .btn {
-      display: block;
-      text-align: center;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .benefit {
-      background: var(--card);
-      border: 1px solid #292929;
-      padding: 25px;
-    }
-
-    .benefit h3 { margin-bottom: 10px; }
-    .benefit p { color: var(--muted); font-size: 14px; }
-
-    .order {
-      background: #151517;
-      padding: 55px 25px;
-      text-align: center;
-      border-top: 1px solid #333;
-    }
-
-    .order p {
-      color: var(--muted);
-      margin: 12px auto 25px;
-    }
-
-    footer {
-      padding: 30px 7%;
-      color: #777;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    @media (max-width: 800px) {
-      .products { grid-template-columns: 1fr 1fr; }
-      .benefits { grid-template-columns: 1fr; }
-      .hero { min-height: 440px; padding: 65px 7%; }
-    }
-
-    @media (max-width: 520px) {
-      header { padding: 17px 5%; }
-      .logo { font-size: 19px; }
-      .header-link { font-size: 11px; padding: 9px; }
-      .products { grid-template-columns: 1fr; }
-      .product-photo { height: 300px; }
-      .section { padding: 55px 5%; }
-      .hero p { font-size: 15px; }
-    }
-  </style>
+        /* Футер */
+        footer { text-align: center; padding: 20px; font-family: 'Arial', sans-serif; font-size: 12px; color: #666; }
+    </style>
 </head>
 <body>
 
-<header>
-  <a href="#" class="logo">THERMO<span>SHOP</span></a>
-  <a href="#products" class="header-link">КАТАЛОГ ТОВАРІВ</a>
-</header>
+<div class="mobile-container">
+    
+    <!-- Головний екран -->
+    <header class="hero">
+        <h1>ТРЕНУЙСЯ<br>БЕЗ МЕЖ</h1>
+        <p>Компресійний одяг Thermofight для максимальної віддачі у залі та на татамі.</p>
+        <a href="#catalog" class="btn-main" style="background-color: #fff; color: #000;">ДИВИТИСЯ КАТАЛОГ ↓</a>
+    </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">TRAIN HARD. STAY STRONG.</div>
-    <h1>ТВІЙ ФОРМАТ.<br>ТВОЄ ТРЕНУВАННЯ.</h1>
-    <p>Компресійний одяг для MMA, фітнесу, CrossFit та силових тренувань.</p>
-    <a href="#products" class="btn">ОБРАТИ КОМПЛЕКТ →</a>
-  </div>
-</section>
+    <!-- Товари -->
+    <section id="catalog" class="products-section">
+        <h2 class="section-title">ОБЕРИ СВІЙ СЕТ</h2>
 
-<section class="section" id="products">
-  <h2 class="section-title">ОБИРАЙ СВІЙ КОМПЛЕКТ</h2>
-  <p class="section-subtitle">Спеціальні ціни на залишок колекції.</p>
+        <!-- Товар 1 -->
+        <article class="product-card">
+            <!-- ДЛЯ ЗАМІНИ НА РЕАЛЬНЕ ФОТО: Видаліть текст всередині та розкоментуйте тег <img> -->
+            <div class="image-placeholder">
+                ФОТО КОМПЛЕКТУ 3В1
+                <!-- <img src="3in1.jpg" alt="Комплект 3в1"> -->
+            </div>
+            <h3 class="product-title">КОМПЛЕКТ 3В1</h3>
+            <p class="product-desc">Рашгард + Легінси + Шорти.<br>Повний заряд для твого тренування.</p>
+            <div class="product-price">1300 ₴</div>
+            <!-- Пряме посилання в Direct -->
+            <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ В DIRECT</a>
+        </article>
 
-  <div class="products">
+        <!-- Товар 2 -->
+        <article class="product-card">
+            <div class="image-placeholder">
+                ФОТО КОМПЛЕКТУ 2В1
+                <!-- <img src="2in1.jpg" alt="Комплект 2в1"> -->
+            </div>
+            <h3 class="product-title">КОМПЛЕКТ 2В1</h3>
+            <p class="product-desc">Рашгард + Легінси.<br>Ідеальна база під шорти або кімоно.</p>
+            <div class="product-price">1050 ₴</div>
+            <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ В DIRECT</a>
+        </article>
 
-    <article class="product">
-      <div class="product-photo">ФОТО КОМПЛЕКТУ 3В1</div>
-      <div class="product-info">
-        <h3>КОМПЛЕКТ 3В1</h3>
-        <p>Рашгард + легінси + шорти</p>
-        <div class="price">1190 грн</div>
-        <a href="#order" class="btn">ОБРАТИ</a>
-      </div>
-    </article>
+    </section>
 
-    <article class="product">
-      <div class="product-photo">ФОТО КОМПЛЕКТУ 2В1</div>
-      <div class="product-info">
-        <h3>КОМПЛЕКТ 2В1</h3>
-        <p>Рашгард + легінси</p>
-        <div class="price">1050 грн</div>
-        <a href="#order" class="btn">ОБРАТИ</a>
-      </div>
-    </article>
-
-    <article class="product">
-      <div class="product-photo">ФОТО ШОРТІВ</div>
-      <div class="product-info">
-        <h3>КОМПРЕСІЙНІ ШОРТИ</h3>
-        <p>Для тренувань та активного спорту</p>
-        <div class="price">600 грн</div>
-        <a href="#order" class="btn">ОБРАТИ</a>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<section class="section">
-  <h2 class="section-title">СТВОРЕНО ДЛЯ РУХУ</h2>
-  <p class="section-subtitle">Твій одяг — твоя свобода під час тренування.</p>
-
-  <div class="benefits">
-    <div class="benefit">
-      <h3>01 / ЕЛАСТИЧНІСТЬ</h3>
-      <p>Матеріал адаптується до рухів тіла та не обмежує активність.</p>
+    <!-- Блок зняття заперечень (Підбір розміру) -->
+    <div class="trust-box">
+        <h3>СУМНІВАЄТЕСЬ У РОЗМІРІ?</h3>
+        <p>Не проблема! Просто напишіть нам у Direct ваш <b>зріст та вагу</b>. Ми підберемо комплект, який сяде максимально чітко та комфортно.</p>
+        <br>
+        <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main" style="background-color: #222; border: 1px solid var(--primary-color);">НАПИСАТИ СВОЮ ВАГУ/ЗРІСТ</a>
     </div>
-    <div class="benefit">
-      <h3>02 / КОМФОРТ</h3>
-      <p>Одяг для інтенсивних тренувань і спортивних навантажень.</p>
-    </div>
-    <div class="benefit">
-      <h3>03 / УНІВЕРСАЛЬНІСТЬ</h3>
-      <p>Підходить для MMA, фітнесу, CrossFit та залу.</p>
-    </div>
-  </div>
-</section>
 
-<section class="order" id="order">
-  <h2 class="section-title">ГОТОВИЙ ДО ТРЕНУВАНЬ?</h2>
-  <p>Обери комплект та напиши нам для оформлення замовлення.</p>
-  <a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener">
-    ЗАМОВИТИ В INSTAGRAM →
-  </a>
-</section>
+    <footer>
+        @thermofight.ua © 2026<br>Всі права захищені.
+    </footer>
 
-<footer>
-  THERMO SHOP © 2026. Усі права захищені.
-</footer>
+</div>
 
 </body>
 </html>
