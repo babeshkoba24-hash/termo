@@ -2,14 +2,12 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <!-- Головний тег для мобільної оптимізації -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Thermofight | Компресійний одяг для тренувань</title>
     
     <style>
-        /* Базові налаштування (Темна спортивна тема) */
         :root {
-            --primary-color: #d90429; /* Агресивний червоний для кнопок */
+            --primary-color: #d90429;
             --bg-color: #121212;
             --card-bg: #1e1e1e;
             --text-main: #ffffff;
@@ -28,16 +26,14 @@
         h1, h2, h3 { margin: 0; text-transform: uppercase; }
         p { font-family: 'Arial', sans-serif; margin: 0; line-height: 1.5; }
 
-        /* Контейнер під екран телефону */
         .mobile-container {
-            max-width: 480px;
+            max-width: 100%; /* Розширено для гнучкості */
             margin: 0 auto;
             padding-bottom: 40px;
             background-color: var(--bg-color);
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Головний екран (Hero) */
         .hero {
             text-align: center;
             padding: 40px 20px 30px;
@@ -48,7 +44,6 @@
         .hero h1 { font-size: 32px; letter-spacing: 1px; margin-bottom: 10px; }
         .hero p { color: var(--text-muted); font-size: 16px; margin-bottom: 25px; }
 
-        /* Кнопки (Широкі, зручні для пальця) */
         .btn-main {
             display: block;
             width: 100%;
@@ -56,32 +51,57 @@
             color: #fff;
             text-decoration: none;
             text-align: center;
-            padding: 18px 0;
-            font-size: 18px;
+            padding: 15px 0; /* Трохи зменшено для мобільного */
+            font-size: 16px;
             font-weight: bold;
             border-radius: 8px;
             text-transform: uppercase;
             box-sizing: border-box;
             transition: transform 0.1s;
+            margin-top: 10px;
         }
         .btn-main:active { transform: scale(0.97); }
 
-        /* Блок з товарами */
-        .products-section { padding: 20px; }
+        .products-section { padding: 15px; }
         .section-title { text-align: center; font-size: 24px; margin-bottom: 20px; }
+
+        /* Контейнер для товарів (сітка) */
+        .products-grid {
+            display: grid;
+            /* На мобільних 2 колонки, на дуже малих екранах можна зробити 1 */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; /* Відступ між картками */
+        }
+
+        /* Медіа-запит для зовсім малих екранів, якщо потрібно */
+        @media (max-width: 350px) {
+            .products-grid {
+                grid-template-columns: 1fr; /* 1 колонка на малих телефонах */
+            }
+        }
+
+        /* Якщо екран більший (планшет/ПК), показуємо 3 або більше */
+        @media (min-width: 768px) {
+             .products-grid {
+                grid-template-columns: repeat(3, 1fr); 
+            }
+            .mobile-container {
+                max-width: 900px;
+            }
+        }
 
         .product-card {
             background-color: var(--card-bg);
             border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 10px; /* Зменшено відступи */
             border: 1px solid #333;
+            display: flex;
+            flex-direction: column; /* Щоб контент розтягувався */
         }
 
-        /* Заглушка для фото (потім заміните на <img>) */
         .image-placeholder {
             width: 100%;
-            height: 300px;
+            height: 200px; /* Зменшено висоту для мобільного */
             background-color: #333;
             border-radius: 8px;
             display: flex;
@@ -89,7 +109,7 @@
             justify-content: center;
             color: #777;
             font-family: 'Arial', sans-serif;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             overflow: hidden;
         }
         
@@ -99,23 +119,28 @@
             object-fit: cover;
         }
 
-        .product-title { font-size: 22px; margin-bottom: 5px; }
-        .product-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 15px; }
-        .product-price { color: var(--primary-color); font-size: 26px; margin-bottom: 15px; font-weight: bold;}
+        .product-info {
+            flex-grow: 1; /* Змушує блок займати вільний простір */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Розносить заголовок/опис і ціну/кнопку */
+        }
 
-        /* Блок довіри (Підбір розміру) */
+        .product-title { font-size: 18px; margin-bottom: 5px; } /* Зменшено шрифт */
+        .product-desc { color: var(--text-muted); font-size: 12px; margin-bottom: 10px; } /* Зменшено шрифт */
+        .product-price { color: var(--primary-color); font-size: 20px; font-weight: bold;} /* Зменшено шрифт */
+
         .trust-box {
             background-color: #1a1a1a;
             border: 1px dashed var(--primary-color);
             border-radius: 8px;
             padding: 20px;
-            margin: 30px 20px;
+            margin: 30px 15px;
             text-align: center;
         }
         .trust-box h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
         .trust-box p { font-size: 14px; color: var(--text-muted); }
 
-        /* Футер */
         footer { text-align: center; padding: 20px; font-family: 'Arial', sans-serif; font-size: 12px; color: #666; }
     </style>
 </head>
@@ -123,46 +148,72 @@
 
 <div class="mobile-container">
     
-    <!-- Головний екран -->
     <header class="hero">
         <h1>ТРЕНУЙСЯ<br>БЕЗ МЕЖ</h1>
         <p>Компресійний одяг Thermofight для максимальної віддачі у залі та на татамі.</p>
         <a href="#catalog" class="btn-main" style="background-color: #fff; color: #000;">ДИВИТИСЯ КАТАЛОГ ↓</a>
     </header>
 
-    <!-- Товари -->
     <section id="catalog" class="products-section">
         <h2 class="section-title">ОБЕРИ СВІЙ СЕТ</h2>
 
-        <!-- Товар 1 -->
-        <article class="product-card">
-            <!-- ДЛЯ ЗАМІНИ НА РЕАЛЬНЕ ФОТО: Видаліть текст всередині та розкоментуйте тег <img> -->
-            <div class="image-placeholder">
-                ФОТО КОМПЛЕКТУ 3В1
-                <!-- <img src="3in1.jpg" alt="Комплект 3в1"> -->
-            </div>
-            <h3 class="product-title">КОМПЛЕКТ 3В1</h3>
-            <p class="product-desc">Рашгард + Легінси + Шорти.<br>Повний заряд для твого тренування.</p>
-            <div class="product-price">1300 ₴</div>
-            <!-- Пряме посилання в Direct -->
-            <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ В DIRECT</a>
-        </article>
+        <div class="products-grid">
+            <!-- Товар 1 -->
+            <article class="product-card">
+                <div class="image-placeholder">
+                    ФОТО 3В1
+                    <!-- <img src="3in1.jpg" alt="Комплект 3в1"> -->
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">КОМПЛЕКТ 3В1</h3>
+                        <p class="product-desc">Рашгард + Легінси + Шорти.</p>
+                    </div>
+                    <div>
+                        <div class="product-price">1300 ₴</div>
+                        <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ</a>
+                    </div>
+                </div>
+            </article>
 
-        <!-- Товар 2 -->
-        <article class="product-card">
-            <div class="image-placeholder">
-                ФОТО КОМПЛЕКТУ 2В1
-                <!-- <img src="2in1.jpg" alt="Комплект 2в1"> -->
-            </div>
-            <h3 class="product-title">КОМПЛЕКТ 2В1</h3>
-            <p class="product-desc">Рашгард + Легінси.<br>Ідеальна база під шорти або кімоно.</p>
-            <div class="product-price">1050 ₴</div>
-            <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ В DIRECT</a>
-        </article>
-
+            <!-- Товар 2 -->
+            <article class="product-card">
+                <div class="image-placeholder">
+                    ФОТО 2В1
+                    <!-- <img src="2in1.jpg" alt="Комплект 2в1"> -->
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">КОМПЛЕКТ 2В1</h3>
+                        <p class="product-desc">Рашгард + Легінси.</p>
+                    </div>
+                    <div>
+                         <div class="product-price">1050 ₴</div>
+                         <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ</a>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Товар 3 (Шорти) - Додано для прикладу сітки -->
+            <article class="product-card">
+                <div class="image-placeholder">
+                    ФОТО ШОРТИ
+                    <!-- <img src="shorts.jpg" alt="Шорти"> -->
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">ШОРТИ</h3>
+                        <p class="product-desc">Для активних тренувань.</p>
+                    </div>
+                    <div>
+                         <div class="product-price">600 ₴</div>
+                         <a href="https://ig.me/m/thermofight.ua" target="_blank" class="btn-main">ЗАМОВИТИ</a>
+                    </div>
+                </div>
+            </article>
+        </div>
     </section>
 
-    <!-- Блок зняття заперечень (Підбір розміру) -->
     <div class="trust-box">
         <h3>СУМНІВАЄТЕСЬ У РОЗМІРІ?</h3>
         <p>Не проблема! Просто напишіть нам у Direct ваш <b>зріст та вагу</b>. Ми підберемо комплект, який сяде максимально чітко та комфортно.</p>
