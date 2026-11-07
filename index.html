@@ -1156,6 +1156,117 @@
       .bottom-cta { display: block; }
       .size-table th, .size-table td { padding: 10px 9px; font-size: 12px; }
     }
+
+
+    /* ===== THERMOFIGHT: ОНОВЛЕНИЙ ПЕРШИЙ ЕКРАН ===== */
+    /* Верхня промосмуга залишається, навігацію ховаємо */
+    .header {
+      display: none !important;
+    }
+
+    /* Прибираємо лише зайві елементи першого екрана */
+    .hero .eyebrow,
+    .hero h1,
+    .hero .hero-copy,
+    .hero .hero-buttons {
+      display: none !important;
+    }
+
+    /* Три картки займають доступну ширину */
+    .hero {
+      padding: 24px 0 30px !important;
+    }
+
+    .hero-grid {
+      display: block !important;
+    }
+
+    .hero-grid > div {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .price-tiles {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px !important;
+      margin: 0 !important;
+    }
+
+    /* Зберігаємо оригінальні темні картки */
+    .price-tile {
+      background: #111115 !important;
+      border: 1px solid #2d2d35 !important;
+      border-radius: 10px !important;
+      padding: 12px 9px !important;
+      box-shadow:
+        0 0 12px rgba(229, 9, 20, 0.22),
+        -3px 0 10px rgba(229, 9, 20, 0.14),
+        3px 0 10px rgba(229, 9, 20, 0.14) !important;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    /* Білий текст у картках */
+    .price-tile small {
+      color: #ffffff !important;
+      font-size: 10px;
+    }
+
+    .price-tile strong {
+      color: #ffffff !important;
+      font-size: 19px !important;
+      white-space: nowrap;
+    }
+
+    /* Старі ціни залишаються сірими та перекресленими */
+    .price-tile del {
+      color: #85858e !important;
+      text-decoration: line-through !important;
+      font-size: 10px !important;
+    }
+
+    .price-tile span {
+      color: #eeeeee !important;
+      font-size: 10px;
+    }
+
+    .price-tile:hover {
+      border-color: var(--red) !important;
+      box-shadow:
+        0 0 17px rgba(229, 9, 20, 0.34),
+        -4px 0 13px rgba(229, 9, 20, 0.20),
+        4px 0 13px rgba(229, 9, 20, 0.20) !important;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 22px 0 28px !important;
+      }
+
+      .price-tiles {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px !important;
+      }
+
+      .price-tile {
+        padding: 12px 8px !important;
+      }
+
+      .price-tile strong {
+        font-size: 17px !important;
+      }
+
+      .price-tile del {
+        font-size: 9px !important;
+        margin-left: 2px !important;
+      }
+
+      .price-tile span {
+        font-size: 9px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1187,108 +1298,35 @@
 
   <main id="top">
     <!-- Hero -->
-   
-/* ===== НОВИЙ МІНІМАЛІСТИЧНИЙ ПЕРШИЙ ЕКРАН ===== */
-
-/* Прибираємо верхню навігацію */
-header.header {
-    display: none !important;
-}
-
-/* Прибираємо бейдж, заголовок та опис */
-.hero .eyebrow,
-.hero h1,
-.hero .hero-copy,
-.hero .hero-buttons,
-.hero .hero-product {
-    display: none !important;
-}
-
-/* Залишаємо тільки три цінові картки */
-.hero {
-    padding: 24px 0 30px !important;
-}
-
-.hero-grid {
-    display: block !important;
-}
-
-.price-tiles {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px !important;
-    margin: 0 !important;
-}
-
-/* Білі картки з червоним підсвічуванням */
-.price-tile {
-    background: #f5f5f5 !important;
-    border: 1px solid #ffffff !important;
-    border-radius: 12px !important;
-    padding: 13px 9px !important;
-
-    box-shadow:
-        0 0 13px rgba(229, 9, 20, 0.32),
-        -4px 0 12px rgba(229, 9, 20, 0.16),
-        4px 0 12px rgba(229, 9, 20, 0.16) !important;
-
-    transition: 0.25s ease;
-}
-
-/* Назви комплектів */
-.price-tile small {
-    color: #555555 !important;
-    font-size: 10px !important;
-    font-weight: 700;
-}
-
-/* Ціни */
-.price-tile strong {
-    color: #111111 !important;
-    font-size: 18px !important;
-    white-space: nowrap;
-    margin: 5px 0 3px !important;
-}
-
-/* Стара ціна */
-.price-tile del {
-    color: #888888 !important;
-    font-size: 10px !important;
-}
-
-/* Опис комплектів */
-.price-tile span {
-    color: #555555 !important;
-    font-size: 10px !important;
-    line-height: 1.4;
-}
-
-/* Підсвічування при натисканні */
-.price-tile:active {
-    transform: scale(0.97);
-    box-shadow: 0 0 22px rgba(229, 9, 20, 0.55) !important;
-}
-
-/* Адаптація під телефон */
-@media (max-width: 760px) {
-    .price-tiles {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 9px !important;
-    }
-
-    .price-tile {
-        padding: 12px 8px !important;
-    }
-
-    .price-tile strong {
-        font-size: 17px !important;
-    }
-
-    .hero {
-        padding: 22px 0 26px !important;
-    }
-}
-
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><b>БЕСТСЕЛЕР</b> Чоловічий компресійний одяг для залу та єдиноборств</div>
+          <h1>ОБИРАЙ <em>КОМПЛЕКТ</em> ДЛЯ МАКСИМАЛЬНОЇ РОБОТИ</h1>
+          <p class="hero-copy">Ціни на залишок колекції. Натискай на будь-який комплект у каталозі, обирай розмір і оформлюй за хвилину.</p>
+          <div class="price-tiles">
+            <a class="price-tile" href="#catalog" data-filter-link="all">
+              <small>Комплект 3в1</small>
+              <strong>1 300 ₴ <del>1 750 ₴</del></strong>
+              <span>Рашгард + легінси + шорти</span>
+            </a>
+            <a class="price-tile" href="#catalog" data-filter-link="sets">
+              <small>Комплект 2в1</small>
+              <strong>1 050 ₴ <del>1 450 ₴</del></strong>
+              <span>Рашгард + легінси</span>
+            </a>
+            <a class="price-tile" href="#catalog" data-filter-link="shorts">
+              <small>Окремо шорти</small>
+              <strong>500 ₴ <del>700 ₴</del></strong>
+              <span>Поверх легінсів або окремо</span>
+            </a>
+          </div>
+          <div class="hero-buttons">
+            <a class="btn" href="#catalog">ПЕРЕЙТИ ДО КАТАЛОГУ</a>
+            <a class="btn secondary" href="#fit">ТАБЛИЦЯ РОЗМІРІВ</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Catalog ONLY (Separate "Комплекти" section removed as requested) -->
