@@ -1,513 +1,657 @@
 <!DOCTYPE html>
-<html lang="uk" class="antialiased">
+<html lang="uk">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <title>THERMOFIGHT — компресійний одяг для тренувань</title>
-  <meta name="description" content="Компресійні комплекти 3в1 та 2в1 для MMA, фітнесу та силових. Від 1050 грн. Підбір розміру за зростом і вагою."/>
-  <meta name="theme-color" content="#09090a"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta property="og:title" content="THERMOFIGHT"/>
-  <meta property="og:description" content="Компресійні комплекти 3в1 та 2в1 для MMA, фітнесу та силових. Від 1050 грн."/>
-  <meta name="apple-mobile-web-app-title" content="THERMOFIGHT"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Компресійний одяг для MMA, фітнесу та силових. Комплекти 2в1 і 3в1 від 1050 грн. Підбір розміру, доставка Новою Поштою." />
+  <meta name="theme-color" content="#09090a" />
+  <title>THERMOFIGHT — компресійний одяг</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #09090a;
-      --fg: #fafafa;
-      --red: #e11d48;
-      --line: #27272a;
-      --surface: #18181b;
-      --surface-2: #27272a;
-      --muted: #a1a1aa;
-      --font-display: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --surface: #141416;
+      --surface2: #1c1c20;
+      --fg: #f4f1ea;
+      --muted: #9c988e;
+      --line: #2c2c31;
+      --red: #e10600;
+      --red-deep: #b10500;
     }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
       line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
     }
-
-    .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-    .font-display { font-family: var(--font-display); }
-
-    .text-red { color: var(--red); }
-    .bg-red { background-color: var(--red); }
-    .bg-bg { background-color: var(--bg); }
-    .bg-surface { background-color: var(--surface); }
-    .bg-surface-2 { background-color: var(--surface-2); }
-    .text-fg { color: var(--fg); }
-    .text-muted { color: var(--muted); }
-    .border-line { border-color: var(--line); }
-    .border { border-width: 1px; border-style: solid; }
-
-    .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+    a { color: inherit; text-decoration: none; }
+    button, [role="button"] { cursor: pointer; font: inherit; border: none; background: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
     /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      display: flex;
-      height: 3.5rem;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      background: rgba(9, 9, 10, 0.9);
-      padding: 0 1rem;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .header {
+      position: sticky; top: 0; z-index: 40;
+      height: 56px; padding: 0 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(9,9,10,.92); border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
-    header a { text-decoration: none; color: inherit; }
-    header .logo { font-size: 1.25rem; font-weight: 600; letter-spacing: 0.05em; }
-    header .catalog-btn {
-      display: flex;
-      height: 2.75rem;
-      align-items: center;
-      border: 1px solid var(--line);
-      padding: 0 0.75rem;
-      font-size: 0.875rem;
-      letter-spacing: 0.05em;
+    .logo { font-size: 20px; font-weight: 800; letter-spacing: .04em; }
+    .logo span { color: var(--red); }
+    .header-link {
+      height: 40px; padding: 0 12px;
+      display: flex; align-items: center;
+      border: 1px solid var(--line); font-size: 13px; font-weight: 700; letter-spacing: .06em;
     }
 
     /* Hero */
-    .hero-frame {
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      min-height: 70vh;
+    .hero {
+      position: relative; min-height: 100svh;
+      display: flex; align-items: flex-end;
+      background:
+        linear-gradient(180deg, transparent 20%, rgba(9,9,10,.55) 55%, var(--bg) 92%),
+        linear-gradient(90deg, rgba(9,9,10,.75) 0%, transparent 55%),
+        #1a1a1c;
     }
-    .hero-frame img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
+    .hero-inner { position: relative; width: 100%; padding: 88px 16px 28px; }
+    .eyebrow {
+      color: var(--red); font-size: 12px; font-weight: 800;
+      letter-spacing: .22em; margin-bottom: 12px;
     }
-    .hero-gradient {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, var(--bg) 0%, rgba(9,9,10,0.75) 40%, rgba(9,9,10,0.2) 100%);
+    h1 {
+      font-size: clamp(40px, 11vw, 56px);
+      line-height: .95; font-weight: 900; letter-spacing: .01em;
+      margin-bottom: 14px;
     }
-    .hero-content {
-      position: relative;
-      width: 100%;
-      padding: 6rem 1rem 2rem;
+    .hero p { color: rgba(244,241,234,.9); font-size: 16px; max-width: 340px; margin-bottom: 20px; }
+    .hero p strong { font-variant-numeric: tabular-nums; }
+    .trust {
+      display: flex; flex-wrap: wrap; gap: 8px 14px;
+      margin-top: 14px; font-size: 13px; color: var(--muted);
     }
-    .hero-tag {
-      margin-bottom: 0.75rem;
-      font-size: 0.875rem;
-      letter-spacing: 0.2em;
-      color: var(--red);
+
+    /* Buttons */
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      height: 52px; width: 100%;
+      background: var(--red); color: #fff;
+      font-weight: 800; letter-spacing: .06em; font-size: 15px;
+      border-radius: 2px; transition: background .15s;
     }
-    .hero-title {
-      max-width: 36rem;
-      font-size: 3rem;
-      line-height: 1;
-      font-weight: 600;
-    }
-    @media (min-width: 640px) {
-      .hero-title { font-size: 4.5rem; }
-    }
-    .hero-desc {
-      margin-top: 1rem;
-      max-width: 28rem;
-      font-size: 1rem;
-      color: rgba(250,250,250,0.9);
-    }
-    .hero-cta {
-      margin-top: 1.5rem;
-      display: flex;
-      height: 3.5rem;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      background: var(--red);
-      padding: 0 1.5rem;
-      font-size: 1.125rem;
-      letter-spacing: 0.05em;
-      color: var(--fg);
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-    }
-    .hero-features {
-      margin-top: 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem 1rem;
-      font-size: 0.875rem;
-      color: var(--muted);
-      list-style: none;
+    .btn:active { background: var(--red-deep); }
+    .btn-outline {
+      background: transparent; border: 1px solid var(--red); color: var(--fg);
     }
 
     /* Sections */
-    section { padding: 2.5rem 1rem; }
-    section h2 {
-      font-size: 2.25rem;
-      line-height: 1;
-      font-weight: 600;
+    .section { padding: 36px 16px; }
+    .section h2 {
+      font-size: clamp(28px, 8vw, 36px); font-weight: 900;
+      line-height: 1.05; margin-bottom: 8px;
     }
-    section .section-desc {
-      margin-top: 0.5rem;
-      color: var(--muted);
-    }
+    .section > .sub { color: var(--muted); margin-bottom: 20px; font-size: 15px; }
 
-    /* Catalog grid */
-    .catalog-grid {
-      margin-top: 1.5rem;
-      display: grid;
-      gap: 1rem;
+    /* Products */
+    .products { display: grid; gap: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); overflow: hidden;
     }
-    @media (min-width: 768px) {
-      .catalog-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .product-card {
-      border: 1px solid var(--line);
-      background: var(--surface);
-    }
-    .product-card img {
-      width: 100%;
-      aspect-ratio: 1 / 1.1;
-      object-fit: cover;
-      display: block;
-    }
-    .product-card .info { padding: 1rem; }
-    .product-card h3 { font-size: 1.5rem; font-weight: 600; }
-    .product-card .price {
-      margin-top: 1rem;
-      font-size: 1.875rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .size-row {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .size-btn {
-      height: 2.75rem;
-      min-width: 2.75rem;
-      border: 1px solid var(--line);
-      background: var(--surface-2);
-      color: var(--fg);
-      font-size: 0.875rem;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .size-btn.active,
-    .size-btn:hover {
-      border-color: var(--red);
-      background: var(--red);
-      color: #fff;
-    }
-    .select-btn {
-      margin-top: 1rem;
-      display: flex;
-      height: 3rem;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      background: var(--red);
-      color: var(--fg);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* Features */
-    .features-grid {
-      margin-top: 1.25rem;
-      display: grid;
-      gap: 0.75rem;
-    }
-    @media (min-width: 768px) {
-      .features-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .feature-card {
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 1rem;
-    }
-    .feature-card .num { font-size: 0.875rem; color: var(--red); }
-    .feature-card h3 { margin-top: 0.5rem; font-size: 1.5rem; font-weight: 600; }
-    .feature-card p { margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted); }
-
-    /* Gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
-    .gallery-grid img {
-      width: 100%;
+    .card-photo {
       aspect-ratio: 3/4;
-      object-fit: cover;
+      background: linear-gradient(145deg, #2a2a2e, #101012);
+      display: flex; align-items: center; justify-content: center;
+      color: #666; font-size: 12px; letter-spacing: .08em; font-weight: 700;
     }
+    .card-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .card-body { padding: 16px; }
+    .card h3 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .card .incl { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+    .card .note { color: rgba(244,241,234,.8); font-size: 13px; margin-bottom: 12px; }
+    .price {
+      font-size: 28px; font-weight: 900; font-variant-numeric: tabular-nums;
+      margin-bottom: 12px;
+    }
+    .sizes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .size-btn {
+      min-width: 44px; height: 44px; padding: 0 8px;
+      border: 1px solid var(--line); background: var(--surface2);
+      font-weight: 700; font-size: 14px;
+    }
+    .size-btn.on { border-color: var(--red); background: var(--red); color: #fff; }
 
-    /* Size calculator */
-    .size-inputs {
-      margin-top: 1.25rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
+    /* Benefits */
+    .benefits { display: grid; gap: 10px; }
+    .benefit {
+      background: var(--surface); border: 1px solid var(--line); padding: 16px;
     }
-    .size-inputs label {
-      display: block;
-      font-size: 0.875rem;
-      color: var(--muted);
+    .benefit .n { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+    .benefit h3 { font-size: 20px; font-weight: 800; margin: 6px 0; }
+    .benefit p { color: var(--muted); font-size: 14px; }
+
+    /* Size helper */
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    label { display: block; font-size: 13px; color: var(--muted); }
+    input, textarea {
+      width: 100%; height: 48px; margin-top: 4px; padding: 0 12px;
+      background: var(--surface); border: 1px solid var(--line);
+      color: var(--fg); font-size: 16px; outline: none;
     }
-    .size-inputs input {
-      margin-top: 0.25rem;
-      display: block;
-      height: 3rem;
-      width: 100%;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--fg);
-      padding: 0 0.75rem;
-      font-size: 1rem;
-      outline: none;
-    }
-    .size-inputs input:focus { border-color: var(--red); }
-    .size-hint {
-      margin-top: 1rem;
-      min-height: 1.5rem;
-      font-size: 0.875rem;
-    }
-    .size-table-wrap {
-      margin-top: 1.5rem;
-      overflow-x: auto;
-      border: 1px solid var(--line);
-    }
-    .size-table {
-      width: 100%;
-      text-align: left;
-      font-size: 0.875rem;
-      border-collapse: collapse;
-    }
-    .size-table thead { background: var(--surface-2); color: var(--muted); }
-    .size-table th, .size-table td {
-      padding: 0.75rem;
-      font-weight: 500;
-    }
-    .size-table tbody tr { border-top: 1px solid var(--line); }
-    .size-table .tabular-nums { font-variant-numeric: tabular-nums; }
+    input:focus, textarea:focus { border-color: var(--red); }
+    textarea { height: 88px; padding: 12px; resize: vertical; }
+    .hint { min-height: 24px; margin: 12px 0 8px; font-size: 14px; }
+    .hint strong { color: var(--red); font-size: 18px; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); margin-top: 16px; }
+    table { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { background: var(--surface2); color: var(--muted); padding: 12px; font-weight: 600; }
+    td { padding: 12px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+    tr.hot { background: rgba(225,6,0,.15); }
+    tr.hot td:first-child { font-weight: 800; }
 
     /* Reviews */
     .reviews {
-      display: flex;
-      gap: 0.75rem;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      scroll-snap-type: x mandatory;
+      display: flex; gap: 12px; overflow-x: auto;
+      scroll-snap-type: x mandatory; padding-bottom: 4px;
     }
-    .review-card {
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 1rem;
-      width: 85%;
-      max-width: 320px;
+    .review {
+      flex: 0 0 84%; scroll-snap-align: start;
+      background: var(--surface); border: 1px solid var(--line); padding: 16px;
     }
-    @media (min-width: 768px) {
-      .review-card { width: auto; flex: 1; }
-    }
-    .review-card blockquote { font-size: 0.875rem; }
-    .review-card figcaption { margin-top: 1rem; font-size: 0.875rem; color: var(--muted); }
-    .review-card .name { color: var(--fg); }
-    .review-card .product { margin-top: 0.25rem; display: block; letter-spacing: 0.05em; color: var(--red); }
+    .review p { font-size: 14px; margin-bottom: 12px; }
+    .review .meta { font-size: 13px; color: var(--muted); }
+    .review .kit { display: block; margin-top: 4px; color: var(--red); font-weight: 800; letter-spacing: .04em; }
 
-    /* Delivery */
-    .delivery-list { margin-top: 1.25rem; display: grid; gap: 0.75rem; }
-    .delivery-item {
-      display: flex;
-      gap: 0.75rem;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 1rem;
+    /* Facts */
+    .facts { display: grid; gap: 10px; }
+    .fact {
+      display: flex; gap: 12px;
+      background: var(--surface); border: 1px solid var(--line); padding: 16px;
     }
-    .delivery-item svg { flex-shrink: 0; margin-top: 0.125rem; color: var(--red); }
-    .delivery-item h3 { font-size: 1.25rem; font-weight: 600; }
-    .delivery-item p { margin-top: 0.25rem; font-size: 0.875rem; color: var(--muted); }
-
-    /* Order CTA */
-    .order-section { text-align: center; padding: 2rem 1rem; }
-    .order-section p { margin: 0.75rem auto 0; max-width: 28rem; font-size: 0.875rem; color: var(--muted); }
-    .order-section .ig-btn {
-      margin-top: 1.25rem;
-      display: flex;
-      height: 3.5rem;
-      width: 100%;
-      max-width: 24rem;
-      margin-left: auto;
-      margin-right: auto;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      background: var(--red);
-      color: var(--fg);
-      font-size: 1.125rem;
-      letter-spacing: 0.05em;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
+    .fact .icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border: 1px solid var(--red); color: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800;
     }
+    .fact h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .fact p { font-size: 13px; color: var(--muted); }
 
-    /* Footer */
+    /* CTA block */
+    .cta-block { text-align: center; padding: 40px 16px; }
+    .cta-block h2 { margin-bottom: 10px; }
+    .cta-block p { color: var(--muted); font-size: 14px; max-width: 360px; margin: 0 auto 18px; }
+    .cta-block .btn { max-width: 400px; margin: 0 auto; }
+
     footer {
-      border-top: 1px solid var(--line);
-      padding: 2rem 1rem;
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
+      padding: 28px 16px; text-align: center;
+      color: var(--muted); font-size: 12px; border-top: 1px solid var(--line);
     }
 
-    /* Bottom dock */
+    /* Sticky dock */
     .dock {
-      position: fixed;
-      inset-inline: 0;
-      bottom: 0;
-      z-index: 30;
-      border-top: 1px solid var(--line);
-      background: rgba(9, 9, 10, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      background: rgba(9,9,10,.96); border-top: 1px solid var(--line);
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: 12px;
     }
-    .dock-inner {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-    }
-    .dock .price-label { font-size: 0.75rem; color: var(--muted); }
-    .dock .price-value { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
-    .dock .order-btn {
-      display: flex;
-      height: 3rem;
-      align-items: center;
-      justify-content: center;
-      background: var(--red);
-      padding: 0 1.25rem;
-      letter-spacing: 0.05em;
-      color: var(--fg);
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+    .dock .from { font-size: 12px; color: var(--muted); }
+    .dock .sum { font-size: 20px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .dock .btn { width: auto; min-width: 140px; height: 48px; padding: 0 20px; flex-shrink: 0; }
+    .dock.hidden { display: none; }
 
-    /* Utility */
-    .tabular-nums { font-variant-numeric: tabular-nums; }
-    .shot { object-fit: cover; }
+    /* Sheet */
+    .sheet-backdrop {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(9,9,10,.72); display: none;
+    }
+    .sheet-backdrop.open { display: block; }
+    .sheet {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      max-height: 92svh; overflow-y: auto;
+      background: var(--surface); border-top: 1px solid var(--line);
+    }
+    .sheet-inner { max-width: 480px; margin: 0 auto; padding: 12px 16px 28px; }
+    .handle {
+      width: 40px; height: 4px; background: var(--line);
+      margin: 4px auto 12px; border-radius: 2px;
+    }
+    .sheet-top { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .sheet-top .tag { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+    .sheet-top h2 { font-size: 26px; font-weight: 900; }
+    .sheet-top .incl { color: var(--muted); font-size: 13px; }
+    .sheet-top .price { font-size: 24px; margin: 4px 0 0; }
+    .close-btn {
+      width: 44px; height: 44px; border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 20px;
+    }
+    .prod-tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 14px; }
+    .prod-tab {
+      height: 40px; padding: 0 12px; flex-shrink: 0;
+      border: 1px solid var(--line); font-size: 13px; font-weight: 700;
+    }
+    .prod-tab.on { border-color: var(--red); background: var(--red); color: #fff; }
+    .field { margin-bottom: 10px; }
+    .err { color: var(--red); font-size: 13px; margin: 8px 0; }
+    .ok { font-size: 13px; margin: 8px 0; display: flex; gap: 8px; align-items: flex-start; }
+    .sheet .btn { margin-top: 12px; }
+    .sheet .fine { text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+    @media (min-width: 768px) {
+      .products { grid-template-columns: repeat(3, 1fr); }
+      .benefits { grid-template-columns: repeat(3, 1fr); }
+      .review { flex: 1; }
+      .hero-inner, .section, .cta-block { max-width: 1100px; margin-left: auto; margin-right: auto; }
+      .header { padding: 0 7%; }
+    }
   </style>
 </head>
 <body>
-  <div class="safe-bottom bg-bg text-fg">
-    <header>
-      <a href="#top" class="logo font-display">THERMO<span class="text-red">FIGHT</span></a>
-      <a href="#catalog" class="catalog-btn font-display">КАТАЛОГ</a>
-    </header>
 
-    <main id="top">
-      <!-- Hero -->
-      <section class="hero-frame">
-        <img src="products/set-3.jpg" alt="Компресійний комплект THERMOFIGHT на темному фоні" class="shot"/>
-        <div class="hero-gradient"></div>
-        <div class="hero-content">
-          <p class="hero-tag font-display">TRAIN HARD. STAY STRONG.</p>
-          <h1 class="hero-title font-display">ГОТОВИЙ ДО<br/>ТРЕНУВАНЬ?</h1>
-          <p class="hero-desc">Компресійний одяг для MMA, фітнесу та силових. Від <span class="font-semibold tabular-nums">1050 грн</span>.</p>
-          <a href="#catalog" class="hero-cta font-display">
-            ОБРАТИ КОМПЛЕКТ
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <ul class="hero-features">
-            <li>Залишок колекції</li>
-            <li>Нова Пошта</li>
-            <li>Обмін 14 днів</li>
-          </ul>
+<header class="header">
+  <a href="#top" class="logo">THERMO<span>FIGHT</span></a>
+  <a href="#catalog" class="header-link">КАТАЛОГ</a>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">TRAIN HARD. STAY STRONG.</div>
+      <h1>ГОТОВИЙ ДО<br>ТРЕНУВАНЬ?</h1>
+      <p>Компресійний одяг для MMA, фітнесу та силових. Від <strong>1050 грн</strong>.</p>
+      <a href="#catalog" class="btn">ОБРАТИ КОМПЛЕКТ →</a>
+      <div class="trust">
+        <span>Залишок колекції</span>
+        <span>Нова Пошта</span>
+        <span>Обмін 14 днів</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section class="section" id="catalog">
+    <h2>ОБИРАЙ КОМПЛЕКТ</h2>
+    <p class="sub">Ціни на залишок. Одне натискання — і замовлення в Instagram.</p>
+    <div class="products" id="products"></div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section">
+    <h2>СТВОРЕНО ДЛЯ РУХУ</h2>
+    <p class="sub">Одяг не заважає роботі — ні в стійці, ні на землі.</p>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="n">01</div>
+        <h3>Еластичність</h3>
+        <p>Тканина тягнеться за ударом і не ріже рух у партері.</p>
+      </div>
+      <div class="benefit">
+        <div class="n">02</div>
+        <h3>Комфорт</h3>
+        <p>Щільна посадка тримає м’язи, не скручується під час раунду.</p>
+      </div>
+      <div class="benefit">
+        <div class="n">03</div>
+        <h3>Універсальність</h3>
+        <p>MMA, бокс, BJJ, CrossFit і силові — один комплект на зал.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIZE -->
+  <section class="section" id="size">
+    <h2>РОЗМІР ЗА ХВИЛИНУ</h2>
+    <p class="sub">Сумніваєтесь? Вкажіть зріст і вагу — підкажемо орієнтир.</p>
+    <div class="grid2">
+      <label>Зріст, см
+        <input id="height" inputmode="numeric" placeholder="182" maxlength="3" />
+      </label>
+      <label>Вага, кг
+        <input id="weight" inputmode="numeric" placeholder="84" maxlength="3" />
+      </label>
+    </div>
+    <p class="hint" id="sizeHint"><span style="color:var(--muted)">Вкажіть зріст від 150 см і вагу від 45 кг.</span></p>
+    <button type="button" class="btn btn-outline" id="applySize" style="display:none">ВЗЯТИ РОЗМІР</button>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Розмір</th><th>Зріст</th><th>Груди</th><th>Талія</th><th>Вага</th></tr>
+        </thead>
+        <tbody id="sizeTable"></tbody>
+      </table>
+    </div>
+    <p style="margin-top:8px;font-size:11px;color:var(--muted)">ССантиметри та кілограми. Сітка — чоловіча компресія.</p>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section">
+    <h2>З ЗАЛУ</h2>
+    <p class="sub">Коротко від тих, хто вже тренується в комплекті.</p>
+    <div class="reviews">
+      <figure class="review">
+        <p>«На 182 см узяв L. На клінчі не з’їжджає, після спарингу форма та сама.»</p>
+        <figcaption class="meta">Андрій · Київ<span class="kit">3в1 · L</span></figcaption>
+      </figure>
+      <figure class="review">
+        <p>«П’ять тренувань на тиждень. Не парить, сохне до наступного залу.»</p>
+        <figcaption class="meta">Максим · Львів<span class="kit">2в1 · XL</span></figcaption>
+      </figure>
+      <figure class="review">
+        <p>«Написав зріст і вагу — розмір підказали за пару хвилин. Сіло з першого разу.»</p>
+        <figcaption class="meta">Денис · Дніпро<span class="kit">Шорти · M</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section class="section" id="delivery">
+    <h2>ДОСТАВКА І ОБМІН</h2>
+    <div class="facts" style="margin-top:16px">
+      <div class="fact">
+        <div class="icon">1</div>
+        <div>
+          <h3>Доставка</h3>
+          <p>Нова Пошта по Україні: відділення або поштомат, зазвичай 1–3 дні.</p>
         </div>
-      </section>
-
-      <!-- Catalog -->
-      <section id="catalog">
-        <h2 class="font-display">ОБИРАЙ КОМПЛЕКТ</h2>
-        <p class="section-desc">Ціни на залишок. На телефоні — одне натискання до замовлення.</p>
-        <div class="catalog-grid">
-          <!-- 3в1 -->
-          <article class="product-card" data-product="Комплект 3в1" data-price="1190">
-            <img src="products/set-3.jpg" alt="Чорний компресійний комплект 3в1: рашгард, легінси та шорти" class="shot"/>
-            <div class="info">
-              <h3 class="font-display">Комплект 3в1</h3>
-              <p class="text-sm text-muted" style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">Рашгард + легінси + шорти</p>
-              <p style="margin-top:0.25rem;font-size:0.875rem;color:rgba(250,250,250,0.8)">Повний комплект на клітку, борцівку і зал</p>
-              <p class="price font-display tabular-nums">1 190 грн</p>
-              <div class="size-row" data-sizes>
-                <button type="button" class="size-btn font-display" data-size="M">M</button>
-                <button type="button" class="size-btn font-display" data-size="L">L</button>
-                <button type="button" class="size-btn font-display" data-size="XL">XL</button>
-                <button type="button" class="size-btn font-display" data-size="XXL">XXL</button>
-                <button type="button" class="size-btn font-display" data-size="XXXL">XXXL</button>
-              </div>
-              <button type="button" class="select-btn font-display" data-select>ОБРАТИ</button>
-            </div>
-          </article>
-
-          <!-- 2в1 -->
-          <article class="product-card" data-product="Комплект 2в1" data-price="1050">
-            <img src="products/set-2.jpg" alt="Чорний компресійний комплект 2в1: рашгард і легінси" class="shot"/>
-            <div class="info">
-              <h3 class="font-display">Комплект 2в1</h3>
-              <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">Рашгард + легінси</p>
-              <p style="margin-top:0.25rem;font-size:0.875rem;color:rgba(250,250,250,0.8)">База під шорти клубу або свої</p>
-              <p class="price font-display tabular-nums">1 050 грн</p>
-              <div class="size-row" data-sizes>
-                <button type="button" class="size-btn font-display" data-size="M">M</button>
-                <button type="button" class="size-btn font-display" data-size="L">L</button>
-                <button type="button" class="size-btn font-display" data-size="XL">XL</button>
-                <button type="button" class="size-btn font-display" data-size="XXL">XXL</button>
-                <button type="button" class="size-btn font-display" data-size="XXXL">XXXL</button>
-              </div>
-              <button type="button" class="select-btn font-display" data-select>ОБРАТИ</button>
-            </div>
-          </article>
-
-          <!-- Шорти -->
-          <article class="product-card" data-product="Компресійні шорти" data-price="600">
-            <img src="products/shorts.jpg" alt="Чорні компресійні шорти для тренувань" class="shot"/>
-            <div class="info">
-              <h3 class="font-display">Компресійні шорти</h3>
-              <p style="margin-top:0.25rem;font-size:0.875rem;color:var(--muted)">Поверх легінсів або окремо</p>
-              <p style="margin-top:0.25rem;font-size:0.875rem;color:rgba(250,250,250,0.8)">Щільна посадка, не з’їжджають у партері</p>
-              <p class="price font-display tabular-nums">600 грн</p>
-              <div class="size-row" data-sizes>
-                <button type="button" class="size-btn font-display" data-size="M">M</button>
-                <button type="button" class="size-btn font-display" data-size="L">L</button>
-                <button type="button" class="size-btn font-display" data-size="XL">XL</button>
-                <button type="button" class="size-btn font-display" data-size="XXL">XXL</button>
-                <button type="button" class="size-btn font-display" data-size="XXXL">XXXL</button>
-              </div>
-              <button type="button" class="select-btn font-display" data-select>ОБРАТИ</button>
-            </div>
-          </article>
+      </div>
+      <div class="fact">
+        <div class="icon">2</div>
+        <div>
+          <h3>Оплата</h3>
+          <p>Післяплата на відділенні або переказ на картку — як зручніше.</p>
         </div>
-      </section>
+      </div>
+      <div class="fact">
+        <div class="icon">3</div>
+        <div>
+          <h3>Обмін</h3>
+          <p>14 днів на обмін розміру, якщо річ без слідів носіння і з бірками.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Features -->
-      <section>
-        <h2 class="font-display">СТВОРЕНО ДЛЯ РУХУ</h2>
-        <p class="section-desc" style="margin-bottom:1.25rem">Одяг не заважає роботі — ні в стійці, ні на землі.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <p class="num 
+  <!-- FINAL CTA -->
+  <section class="cta-block">
+    <h2>ЗАМОВИТИ В ДІРЕКТ</h2>
+    <p>Оплата на сайті не списується. Підтверджуємо розмір і наявність в Instagram @thermofight.ua</p>
+    <button type="button" class="btn" id="ctaOpen">НАПИСАТИ В INSTAGRAM</button>
+  </section>
+</main>
+
+<footer>THERMOFIGHT © 2026 · Компресійний одяг для тренувань</footer>
+
+<!-- Sticky dock -->
+<div class="dock" id="dock">
+  <div style="flex:1;min-width:0">
+    <div class="from">Від</div>
+    <div class="sum">1050 грн</div>
+  </div>
+  <button type="button" class="btn" id="dockBtn">ЗАМОВИТИ</button>
+</div>
+
+<!-- Order sheet -->
+<div class="sheet-backdrop" id="sheet">
+  <div class="sheet" onclick="event.stopPropagation()">
+    <div class="sheet-inner">
+      <div class="handle"></div>
+      <div class="sheet-top">
+        <div>
+          <div class="tag">ЗАМОВЛЕННЯ</div>
+          <h2 id="sheetName">Комплект 3в1</h2>
+          <div class="incl" id="sheetIncl">Рашгард + легінси + шорти</div>
+          <div class="price" id="sheetPrice">1190 грн</div>
+        </div>
+        <button type="button" class="close-btn" id="sheetClose" aria-label="Закрити">×</button>
+      </div>
+
+      <div class="prod-tabs" id="prodTabs"></div>
+
+      <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Розмір</p>
+      <div class="sizes" id="sheetSizes"></div>
+
+      <div class="field"><label>Ім’я<input id="fName" placeholder="Андрій" autocomplete="name" /></label></div>
+      <div class="field"><label>Телефон<input id="fPhone" inputmode="tel" placeholder="067 000 00 00" autocomplete="tel" /></label></div>
+      <div class="field"><label>Місто / Нова Пошта<input id="fCity" placeholder="Львів, відділення 12" /></label></div>
+      <div class="field"><label>Коментар<textarea id="fComment" placeholder="Колір, термін, питання"></textarea></label></div>
+
+      <p class="err" id="formErr" style="display:none"></p>
+      <p class="ok" id="formOk" style="display:none">✓ Текст замовлення скопійовано. Вставте його в чат Instagram.</p>
+
+      <button type="button" class="btn" id="submitBtn">НАПИСАТИ В INSTAGRAM</button>
+      <p class="fine">Замовлення не оплачується на сайті. Менеджер підтвердить наявність розміру.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const IG = "https://ig.me/m/thermofight.ua";
+  const products = [
+    { id: "set-3", name: "Комплект 3в1", includes: "Рашгард + легінси + шорти", price: 1190, note: "Повний комплект на клітку, борцівку і зал", photo: "ФОТО 3В1" },
+    { id: "set-2", name: "Комплект 2в1", includes: "Рашгард + легінси", price: 1050, note: "База під шорти клубу або свої", photo: "ФОТО 2В1" },
+    { id: "shorts", name: "Компресійні шорти", includes: "Поверх легінсів або окремо", price: 600, note: "Щільна посадка, не з’їжджають у партері", photo: "ФОТО ШОРТІВ" },
+  ];
+  const sizeList = ["M", "L", "XL", "XXL", "XXXL"];
+  const chart = [
+    { size: "M", height: "168–176", chest: "92–98", waist: "78–84", weight: "65–78", h: [165,176], w: [60,78] },
+    { size: "L", height: "176–182", chest: "98–104", waist: "84–90", weight: "76–88", h: [174,183], w: [74,90] },
+    { size: "XL", height: "180–188", chest: "104–112", waist: "90–98", weight: "86–100", h: [180,190], w: [86,102] },
+    { size: "XXL", height: "184–194", chest: "112–120", waist: "98–106", weight: "98–112", h: [184,196], w: [98,115] },
+    { size: "XXXL", height: "188–200", chest: "120–130", waist: "106–118", weight: "110–128", h: [186,210], w: [108,140] },
+  ];
+
+  let state = { productId: "set-3", size: "", height: "", weight: "" };
+
+  function formatUah(n) {
+    return n.toLocaleString("uk-UA") + " грн";
+  }
+  function digits(s) {
+    return String(s || "").replace(/\D/g, "");
+  }
+  function product() {
+    return products.find(function (p) { return p.id === state.productId; }) || products[0];
+  }
+  function suggestSize(h, w) {
+    h = Number(h); w = Number(w);
+    if (!h || !w || h < 150 || h > 220 || w < 45 || w > 160) return null;
+    var best = "L", bestScore = Infinity;
+    chart.forEach(function (b) {
+      var hm = (b.h[0] + b.h[1]) / 2, wm = (b.w[0] + b.w[1]) / 2;
+      var hs = (b.h[1] - b.h[0]) / 2, ws = (b.w[1] - b.w[0]) / 2;
+      var score = Math.abs(h - hm) / hs + Math.abs(w - wm) / ws;
+      if (score < bestScore) { bestScore = score; best = b.size; }
+    });
+    return best;
+  }
+
+  /* Render catalog */
+  var productsEl = document.getElementById("products");
+  products.forEach(function (p) {
+    var art = document.createElement("article");
+    art.className = "card";
+    art.innerHTML =
+      '<div class="card-photo">' + p.photo + "</div>" +
+      '<div class="card-body">' +
+        "<h3>" + p.name + "</h3>" +
+        '<div class="incl">' + p.includes + "</div>" +
+        '<div class="note">' + p.note + "</div>" +
+        '<div class="price">' + formatUah(p.price) + "</div>" +
+        '<div class="sizes" data-pid="' + p.id + '"></div>' +
+        '<button type="button" class="btn" data-open="' + p.id + '">ОБРАТИ</button>' +
+      "</div>";
+    var sizesBox = art.querySelector(".sizes");
+    sizeList.forEach(function (s) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "size-btn";
+      b.textContent = s;
+      b.addEventListener("click", function () { openSheet(p.id, s); });
+      sizesBox.appendChild(b);
+    });
+    art.querySelector("[data-open]").addEventListener("click", function () {
+      openSheet(p.id);
+    });
+    productsEl.appendChild(art);
+  });
+
+  /* Size table */
+  var tbody = document.getElementById("sizeTable");
+  function renderTable(hot) {
+    tbody.innerHTML = "";
+    chart.forEach(function (r) {
+      var tr = document.createElement("tr");
+      if (hot && r.size === hot) tr.className = "hot";
+      tr.innerHTML =
+        "<td>" + r.size + "</td><td>" + r.height + "</td><td>" + r.chest +
+        "</td><td>" + r.waist + "</td><td>" + r.weight + "</td>";
+      tbody.appendChild(tr);
+    });
+  }
+  renderTable(null);
+
+  var heightIn = document.getElementById("height");
+  var weightIn = document.getElementById("weight");
+  var sizeHint = document.getElementById("sizeHint");
+  var applySize = document.getElementById("applySize");
+
+  function onMeasure() {
+    state.height = digits(heightIn.value).slice(0, 3);
+    state.weight = digits(weightIn.value).slice(0, 3);
+    heightIn.value = state.height;
+    weightIn.value = state.weight;
+    var s = suggestSize(state.height, state.weight);
+    renderTable(s);
+    if (s) {
+      sizeHint.innerHTML = 'Орієнтир: <strong>' + s + '</strong> <span style="color:var(--muted)">— точний розмір підтвердимо в чаті.</span>';
+      applySize.style.display = "flex";
+      applySize.textContent = "ВЗЯТИ РОЗМІР " + s;
+      applySize.onclick = function () { openSheet(state.productId || "set-3", s); };
+    } else {
+      sizeHint.innerHTML = '<span style="color:var(--muted)">Вкажіть зріст від 150 см і вагу від 45 кг.</span>';
+      applySize.style.display = "none";
+    }
+  }
+  heightIn.addEventListener("input", onMeasure);
+  weightIn.addEventListener("input", onMeasure);
+
+  /* Sheet */
+  var sheet = document.getElementById("sheet");
+  var dock = document.getElementById("dock");
+
+  function openSheet(productId, size) {
+    state.productId = productId || state.productId;
+    if (size) state.size = size;
+    syncSheet();
+    sheet.classList.add("open");
+    dock.classList.add("hidden");
+  }
+  function closeSheet() {
+    sheet.classList.remove("open");
+    dock.classList.remove("hidden");
+    document.getElementById("formErr").style.display = "none";
+    document.getElementById("formOk").style.display = "none";
+  }
+  function syncSheet() {
+    var p = product();
+    document.getElementById("sheetName").textContent = p.name;
+    document.getElementById("sheetIncl").textContent = p.includes;
+    document.getElementById("sheetPrice").textContent = formatUah(p.price);
+
+    var tabs = document.getElementById("prodTabs");
+    tabs.innerHTML = "";
+    products.forEach(function (pr) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "prod-tab" + (pr.id === p.id ? " on" : "");
+      b.textContent = pr.name;
+      b.addEventListener("click", function () {
+        state.productId = pr.id;
+        syncSheet();
+      });
+      tabs.appendChild(b);
+    });
+
+    var sizesBox = document.getElementById("sheetSizes");
+    sizesBox.innerHTML = "";
+    sizeList.forEach(function (s) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "size-btn" + (state.size === s ? " on" : "");
+      b.textContent = s;
+      b.addEventListener("click", function () {
+        state.size = s;
+        syncSheet();
+      });
+      sizesBox.appendChild(b);
+    });
+  }
+
+  document.getElementById("sheetClose").addEventListener("click", closeSheet);
+  sheet.addEventListener("click", function (e) {
+    if (e.target === sheet) closeSheet();
+  });
+  document.getElementById("dockBtn").addEventListener("click", function () {
+    openSheet("set-2");
+  });
+  document.getElementById("ctaOpen").addEventListener("click", function () {
+    openSheet(state.productId || "set-3", state.size || undefined);
+  });
+
+  function buildMessage() {
+    var p = product();
+    var lines = [
+      "Привіт! Хочу замовити з сайту THERMOFIGHT:",
+      p.name + " — " + formatUah(p.price),
+      "Склад: " + p.includes,
+      "Розмір: " + (state.size || "підкажіть"),
+    ];
+    var name = document.getElementById("fName").value.trim();
+    var phone = document.getElementById("fPhone").value.trim();
+    var city = document.getElementById("fCity").value.trim();
+    var comment = document.getElementById("fComment").value.trim();
+    if (name) lines.push("Ім’я: " + name);
+    if (phone) lines.push("Телефон: " + phone);
+    if (city) lines.push("Місто / Нова Пошта: " + city);
+    if (state.height || state.weight) {
+      lines.push("Зріст: " + (state.height || "—") + " см, вага: " + (state.weight || "—") + " кг");
+    }
+    if (comment) lines.push("Коментар: " + comment);
+    return lines.join("\n");
+  }
+
+  document.getElementById("submitBtn").addEventListener("click", function () {
+    var err = document.getElementById("formErr");
+    var ok = document.getElementById("formOk");
+    err.style.display = "none";
+    ok.style.display = "none";
+
+    if (!state.size) {
+      err.textContent = "Оберіть розмір — або напишіть зріст і вагу, підкажемо.";
+      err.style.display = "block";
+      return;
+    }
+    if (digits(document.getElementById("fPhone").value).length < 10) {
+      err.textContent = "Вкажіть телефон, щоб ми підтвердили замовлення.";
+      err.style.display = "block";
+      return;
+    }
+
+    var text = buildMessage();
+    var copied = false;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        ok.style.display = "flex";
+      }).catch(function () {});
+      copied = true;
+    }
+    if (copied) ok.style.display = "flex";
+    window.open(IG, "_blank", "noopener,noreferrer");
+  });
+})();
+</script>
+</body>
+</html>
